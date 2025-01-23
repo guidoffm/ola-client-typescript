@@ -19,7 +19,7 @@ export class OlaClient {
     private _baseUrl: string;
     private _buffer: Buffer;
 
-    constructor(host: string, port: number = 9090, private bufferLength: number = 512) {
+    constructor(host: string = 'localhost', port: number = 9090, private bufferLength: number = 512) {
         this._baseUrl = `http://${host}:${port}`;
         //create a buffer with bufferLength bytes
         this._buffer = Buffer.alloc(bufferLength);

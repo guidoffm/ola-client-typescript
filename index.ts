@@ -6,7 +6,7 @@ async function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-const client = new OlaClient('raspi5');
+const client = new OlaClient();
 
 const ports = await client.getPorts();
 // pretty print the ports
