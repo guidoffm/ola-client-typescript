@@ -17,14 +17,21 @@ import type { ServerStats } from "./types/server-stats";
 export class OlaClient {
 
     private _baseUrl: string;
-    private _buffer: Buffer;
+    private _bufferLength: number;
 
-    constructor(host: string = 'localhost', port: number = 9090, private bufferLength: number = 512) {
+    constructor(host: string = 'localhost', port: number = 9090, bufferLength: number = 512) {
         this._baseUrl = `http://${host}:${port}`;
-        //create a buffer with bufferLength bytes
-        this._buffer = Buffer.alloc(bufferLength);
+        this._bufferLength = bufferLength;
     }
 
+    set bufferLength(length: number) {
+        this._bufferLength = length;
+    }
+
+    get bufferLength(): number {
+        return this._bufferLength;
+    }
+    
     /**
      * Fetches the list of ports from the server.
      *
@@ -65,7 +72,7 @@ export class OlaClient {
      * ```
      */
     async setDmx(universe: string, data: number[]): Promise<void> {
-        const buffer = this._buffer;
+        const buffer = Buffer.alloc(this.bufferLength);
 
         for (let i = 0; i < data.length; i++) {
             buffer[i] = data[i];
