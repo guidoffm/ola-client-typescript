@@ -1,28 +1,12 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es2019",
     "declaration": true,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2017",
-    "module": "ESNext",
-    "esModuleInterop": true,
-    "lib": [
-      "es2020",
-      "dom"
-    ]
-  }
+    "outDir": "./dist"
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
