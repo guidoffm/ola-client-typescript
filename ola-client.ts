@@ -5,7 +5,7 @@
  *
  * @example
  * ```typescript
- * const client = new OlaClient('localhost', 9090);
+ * const client = new OlaClient();
  * await client.setDmx('1', [255, 128, 64]);
  * ```
  */
@@ -31,7 +31,7 @@ export class OlaClient {
     get bufferLength(): number {
         return this._bufferLength;
     }
-    
+
     /**
      * Fetches the list of ports from the server.
      *
