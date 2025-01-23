@@ -1,4 +1,4 @@
-import { OlaClient } from "./ola-client";
+import { OlaClient } from "..";
 
 console.log("Hello via Bun!");
 

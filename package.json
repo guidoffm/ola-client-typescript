@@ -1,12 +1,16 @@
 {
   "name": "ola-client",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/node": "^22.10.9"
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
   },
-  "peerDependencies": {
+  "devDependencies": {
+    "@types/node": "^22.10.9",
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
   }
 }
