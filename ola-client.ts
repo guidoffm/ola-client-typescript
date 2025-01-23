@@ -48,7 +48,6 @@ export class OlaClient {
         return data as ServerStats;
     }
 
-
     /**
      * Sets the DMX data for a specified universe.
      *
@@ -66,17 +65,33 @@ export class OlaClient {
      * ```
      */
     async setDmx(universe: string, data: number[]): Promise<void> {
+        const buffer = this._buffer;
 
         for (let i = 0; i < data.length; i++) {
-            this._buffer[i] = data[i];
+            buffer[i] = data[i];
         }
 
         // fill up the rest of the buffer with 0
         for (let i = data.length; i < this.bufferLength; i++) {
-            this._buffer[i] = 0;
+            buffer[i] = 0;
         }
 
-        const dataString = this._buffer.join(',');
+        await this.setDmxFromBuffer(universe, buffer);
+    }
+
+
+    /**
+     * Sets the DMX data for a given universe from a buffer.
+     *
+     * @param universe - The universe identifier to set the DMX data for.
+     * @param buffer - The buffer containing the DMX data.
+     * @returns A promise that resolves when the DMX data has been set.
+     *
+     * @throws Will throw an error if the fetch request fails.
+     */
+    async setDmxFromBuffer(universe: string, buffer: Buffer): Promise<void> {
+
+        const dataString = buffer.join(',');
         // console.log(dataString);
 
         await fetch(`${this._baseUrl}/set_dmx`, {
