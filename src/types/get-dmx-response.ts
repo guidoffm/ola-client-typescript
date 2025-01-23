@@ -1,4 +1,4 @@
 export interface GetDmxResponse {
-    data: number[];
+    dmx: number[];
     error: string;
 }
