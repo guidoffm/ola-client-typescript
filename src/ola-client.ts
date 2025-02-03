@@ -125,7 +125,7 @@ export class OlaClient {
     }
 
     async universesPluginList(): Promise<UniversesPluginListResponse> {
-        const response = await fetch(`${this._baseUrl}/json/get_ports`);
+        const response = await fetch(`${this._baseUrl}/json/universes_plugin_list`);
         const data = await response.json();
         return data as UniversesPluginListResponse;
     }
