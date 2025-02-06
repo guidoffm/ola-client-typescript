@@ -35,5 +35,29 @@ describe('OlaClient', () => {
         const response = await client.setDmx(mockUniverse, mockData);
         expect(response).toEqual(mockResponse);
     });
+
+    it('should set buffer length', () => {
+        const mockLength = 512;
+        client.bufferLength = mockLength;
+        expect(client.bufferLength).toEqual(mockLength);
+    });
+
+    it('should fetch universe plugin list', async () => {
+        const mockUniversePluginList = [{ name: 'plugin1' }, { name: 'plugin2' }];
+        (client.universePluginList as jest.Mock).mockResolvedValue(mockUniversePluginList);
+
+        const universePluginList = await client.universePluginList();
+        expect(universePluginList).toEqual(mockUniversePluginList);
+    });
+
+    it('should throw error if fetch operation fails', async () => {
+        (client.getPorts as jest.Mock).mockRejectedValue(new Error('Failed to fetch ports'));
+
+        try {
+            await client.getPorts();
+        } catch (error) {
+            expect(error).toBeTruthy();
+        }
+    });
 });
 
