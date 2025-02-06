@@ -14,7 +14,7 @@
 import { GetDmxResponse } from "./types/get-dmx-response";
 import type { Port } from "./types/port";
 import type { ServerStats } from "./types/server-stats";
-import { UniversesPluginListResponse } from "./types/universes-plugin-list-response";
+import { UniversesPluginListResponse as UniversePluginListResponse } from "./types/universes-plugin-list-response";
 
 export class OlaClient {
 
@@ -124,9 +124,9 @@ export class OlaClient {
         return data as GetDmxResponse;
     }
 
-    async universesPluginList(): Promise<UniversesPluginListResponse> {
-        const response = await fetch(`${this._baseUrl}/json/universes_plugin_list`);
+    async universePluginList(): Promise<UniversePluginListResponse> {
+        const response = await fetch(`${this._baseUrl}/json/universe_plugin_list`);
         const data = await response.json();
-        return data as UniversesPluginListResponse;
+        return data as UniversePluginListResponse;
     }
 }

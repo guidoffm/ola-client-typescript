@@ -13,8 +13,11 @@ import { OlaClient } from "../src/index";
     // pretty print the ports
     console.log(JSON.stringify(ports, null, 2));
 
-    const ServerStats = await client.getServerStats();
-    console.log(ServerStats);
+    const serverStats = await client.getServerStats();
+    console.log(serverStats);
+
+    const universesPluginList = await client.universePluginList();
+    console.log(universesPluginList);
 
     await client.setDmx('1', [255, 255, 0, 0]);
     await sleep(1000);
