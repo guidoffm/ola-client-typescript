@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import { OlaClient } from '../src/index';
+import { OlaClient, Port } from '../src/index';
 import { UniversesPluginListResponse } from "../src/types/universes-plugin-list-response";
 
 jest.mock('../src/index');
@@ -12,7 +12,23 @@ describe('OlaClient', () => {
     });
 
     test("should get ports", async () => {
-        const mockPorts = [{ name: 'port1' }, { name: 'port2' }];
+        const mockPorts: Port[] = [{
+            description: 'port1',
+            device: 'device1',
+            id: '1',
+            is_output: true,
+            priority: {
+                current_mode: 'mode1',
+                priority: 1,
+                value: 255
+            }
+        }, {
+            description: 'port2',
+            device: 'device2',
+            id: '2',
+            is_output: false,
+            priority: {}
+        }];
         (client.getPorts as jest.Mock).mockResolvedValue(mockPorts);
 
         const ports = await client.getPorts();
@@ -53,11 +69,12 @@ describe('OlaClient', () => {
                 rdm_devices: 3
             }],
 
-            plugins: [{ 
-                id: 'plugin1', 
-                active: true, 
-                enabled: true, 
-                name: 'plugin1' }]
+            plugins: [{
+                id: 'plugin1',
+                active: true,
+                enabled: true,
+                name: 'plugin1'
+            }]
         };
         (client.universePluginList as jest.Mock).mockResolvedValue(mockUniversePluginList);
 
