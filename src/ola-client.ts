@@ -101,7 +101,6 @@ export class OlaClient {
     async setDmxFromBuffer(universe: string, buffer: Buffer): Promise<void> {
 
         const dataString = buffer.join(',');
-        // console.log(dataString);
 
         await fetch(`${this._baseUrl}/set_dmx`, {
             method: 'POST',
@@ -110,8 +109,6 @@ export class OlaClient {
             },
             body: new URLSearchParams({ u: universe, d: dataString }).toString()
         })
-            // .then(response => response.text())
-            // .then(data => console.log(data))
             .catch(error => {
                 console.error('Error:', error);
                 throw error;

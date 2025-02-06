@@ -65,6 +65,16 @@ describe('OlaClient', () => {
         expect(response).toEqual(mockResponse);
     });
 
+    it('should set DMX data from existing buffer', async () => {
+        const mockUniverse = '1';
+        const mockData = Buffer.alloc(512);
+        const mockResponse = { success: true };
+        (client.setDmxFromBuffer as jest.Mock).mockResolvedValue(mockResponse);
+
+        const response = await client.setDmxFromBuffer(mockUniverse, mockData);
+        expect(response).toEqual(mockResponse);
+    });
+
     it('should set buffer length', () => {
         const mockLength = 512;
         client.bufferLength = mockLength;
