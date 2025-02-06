@@ -1,5 +1,6 @@
 import { test, expect } from "@jest/globals";
 import { OlaClient } from '../src/index';
+import { UniversesPluginListResponse } from "../src/types/universes-plugin-list-response";
 
 jest.mock('../src/index');
 
@@ -43,7 +44,21 @@ describe('OlaClient', () => {
     });
 
     it('should fetch universe plugin list', async () => {
-        const mockUniversePluginList = [{ name: 'plugin1' }, { name: 'plugin2' }];
+        const mockUniversePluginList: UniversesPluginListResponse = {
+            universes: [{
+                id: 1,
+                name: 'universe1',
+                input_ports: 2,
+                output_ports: 1,
+                rdm_deices: 3
+            }],
+
+            plugins: [{ 
+                id: 'plugin1', 
+                active: true, 
+                enabled: true, 
+                name: 'plugin1' }]
+        };
         (client.universePluginList as jest.Mock).mockResolvedValue(mockUniversePluginList);
 
         const universePluginList = await client.universePluginList();
