@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import { OlaClient, Port } from '../src/index';
+import { OlaClient, Port, ServerStats } from '../src/index';
 import { UniversesPluginListResponse } from "../src/types/universes-plugin-list-response";
 
 jest.mock('../src/index');
@@ -36,7 +36,19 @@ describe('OlaClient', () => {
     });
 
     it('should get server stats', async () => {
-        const mockServerStats = { uptime: 12345, version: '1.0.0' };
+        const mockServerStats: ServerStats = {
+
+            broadcast: '255.255.255.255',
+            config_dir: '/etc/ola',
+            hostname: 'localhost',
+            hw_address: '00:00:00:00:00:00',
+            instance_name: 'ola',
+            ip: '127.0.0.1',
+            version: '1.0.0',
+            quit_enabled: true,
+            subnet: '255.255.255.0',
+            up_since: '2021-09-01T00:00:00Z'
+        };
         (client.getServerStats as jest.Mock).mockResolvedValue(mockServerStats);
 
         const serverStats = await client.getServerStats();
