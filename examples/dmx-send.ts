@@ -1,4 +1,4 @@
-import { OlaClient } from "../ola-client";
+import { OlaClient } from "../src/index";
 
 (async () => {
     console.log("Hello via Bun!");
