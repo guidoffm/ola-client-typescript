@@ -10,7 +10,7 @@ export interface Universe {
     input_ports: number;
     name: string;
     output_ports: number;
-    rdm_deices: number
+    rdm_devices: number
 }
 
 export interface UniversesPluginListResponse {  

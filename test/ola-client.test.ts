@@ -50,7 +50,7 @@ describe('OlaClient', () => {
                 name: 'universe1',
                 input_ports: 2,
                 output_ports: 1,
-                rdm_deices: 3
+                rdm_devices: 3
             }],
 
             plugins: [{ 
