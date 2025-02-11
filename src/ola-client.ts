@@ -26,13 +26,13 @@ export class OlaClient {
         this._bufferLength = bufferLength;
     }
 
-    set bufferLength(length: number) {
-        this._bufferLength = length;
-    }
+    // set bufferLength(length: number) {
+    //     this._bufferLength = length;
+    // }
 
-    get bufferLength(): number {
-        return this._bufferLength;
-    }
+    // get bufferLength(): number {
+    //     return this._bufferLength;
+    // }
 
     /**
      * Fetches the list of ports from the server.
@@ -74,14 +74,14 @@ export class OlaClient {
      * ```
      */
     async setDmx(universe: string, data: number[]): Promise<void> {
-        const buffer = Buffer.alloc(this.bufferLength);
+        const buffer = Buffer.alloc(this._bufferLength);
 
         for (let i = 0; i < data.length; i++) {
             buffer[i] = data[i];
         }
 
         // fill up the rest of the buffer with 0
-        for (let i = data.length; i < this.bufferLength; i++) {
+        for (let i = data.length; i < this._bufferLength; i++) {
             buffer[i] = 0;
         }
 
