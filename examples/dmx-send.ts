@@ -18,14 +18,20 @@ import { OlaClient } from "../src/index";
     const universesPluginList = await client.universePluginList();
     console.log(universesPluginList);
 
-    await client.setDmx('1', [255, 255, 0, 0]);
-    await sleep(1000);
+    const universes = universesPluginList.universes;
 
-    await client.setDmx('1', [255, 0, 255, 0]);
-    await sleep(1000);
+    if (universes.length > 0) {
+        const universeId = universes[0].id;
 
-    await client.setDmx('1', [255, 0, 0, 255]);
-    await sleep(1000);
+        await client.setDmx(universeId, [255, 255, 0, 0]);
+        await sleep(1000);
 
-    await client.setDmx('1', []);
+        await client.setDmx(universeId, [255, 0, 255, 0]);
+        await sleep(1000);
+
+        await client.setDmx(universeId, [255, 0, 0, 255]);
+        await sleep(1000);
+
+        await client.setDmx(universeId, []);
+    }
 })();

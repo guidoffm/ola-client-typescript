@@ -73,7 +73,7 @@ export class OlaClient {
      * await setDmx('1', [255, 128, 64]);
      * ```
      */
-    async setDmx(universe: string, data: number[]): Promise<void> {
+    async setDmx(universe: number, data: number[]): Promise<void> {
         const buffer = Buffer.alloc(this._bufferLength);
 
         for (let i = 0; i < data.length; i++) {
@@ -98,7 +98,7 @@ export class OlaClient {
      *
      * @throws Will throw an error if the fetch request fails.
      */
-    async setDmxFromBuffer(universe: string, buffer: Buffer): Promise<void> {
+    async setDmxFromBuffer(universe: number, buffer: Buffer): Promise<void> {
 
         const dataString = buffer.join(',');
 
@@ -107,7 +107,7 @@ export class OlaClient {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: new URLSearchParams({ u: universe, d: dataString }).toString()
+            body: new URLSearchParams({ u: universe.toString(), d: dataString }).toString()
         })
             .catch(error => {
                 console.error('Error:', error);
@@ -115,7 +115,7 @@ export class OlaClient {
             });
     }
 
-    async getDmx(universe: string): Promise<GetDmxResponse> {
+    async getDmx(universe: number): Promise<GetDmxResponse> {
         const response = await fetch(`${this._baseUrl}/get_dmx?u=${universe}`);
         const data: GetDmxResponse = await response.json();
         return data;
