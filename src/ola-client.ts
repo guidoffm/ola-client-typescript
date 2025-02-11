@@ -42,8 +42,8 @@ export class OlaClient {
      */
     async getPorts(): Promise<Port[]> {
         const response = await fetch(`${this._baseUrl}/json/get_ports`);
-        const data = await response.json();
-        return data as Port[];
+        const data: Port[] = await response.json();
+        return data;
     }
 
     /**
@@ -53,8 +53,8 @@ export class OlaClient {
      */
     async getServerStats(): Promise<ServerStats> {
         const response = await fetch(`${this._baseUrl}/json/server_stats`);
-        const data = await response.json();
-        return data as ServerStats;
+        const data: ServerStats = await response.json();
+        return data;
     }
 
     /**
@@ -117,13 +117,13 @@ export class OlaClient {
 
     async getDmx(universe: string): Promise<GetDmxResponse> {
         const response = await fetch(`${this._baseUrl}/get_dmx?u=${universe}`);
-        const data = await response.json();
-        return data as GetDmxResponse;
+        const data: GetDmxResponse = await response.json();
+        return data;
     }
 
     async universePluginList(): Promise<UniversePluginListResponse> {
         const response = await fetch(`${this._baseUrl}/json/universe_plugin_list`);
-        const data = await response.json();
-        return data as UniversePluginListResponse;
+        const data: UniversePluginListResponse = await response.json();
+        return data;
     }
 }
